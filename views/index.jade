@@ -1,2 +1,9 @@
-h1= title
-p Welcome to #{title}
+form(method="post", action="/test")
+	label From:
+	input(type="text", name="From")
+	label To:
+	input(type="text", name="To")
+	label Body:
+	input(type="text", name="Body")
+
+	input(type="submit", value="go")

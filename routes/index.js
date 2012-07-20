@@ -4,6 +4,22 @@
  */
 
 exports.index = function(req, res){
-	console.log('req body: ' + req.body.from);
-  res.render('index', { title: 'Express' })
+	res.render('index.jade', {layout: true, locals:{title: 'hello'}});
 };
+
+exports.post = function(req, res){
+	var from = ('req body: ' + req.body.From);
+	//var message = 'echoing From: ' + from + ' to: ' + req.body.To + ' body: ' + req.body.Body;
+	var message = 'I Love You!!!!'
+	var response = '<?xml version="1.0" encoding="UTF-8"?><Response><Sms>' + message + '</Sms></Response>'
+
+  res.send(response);
+};
+
+exports.test = function(req, res){
+	var from = ('req body: ' + req.body.From);
+	var message = 'echoing From: ' + from + ' to: ' + req.body.To + ' body: ' + req.body.Body;
+	var response = '<?xml version="1.0" encoding="UTF-8"?><Response><Sms>' + message + '</Sms></Response>'
+
+  res.send(response);
+}
