@@ -17,8 +17,10 @@ var House = mongoose.model('House');
 
 HouseProvider = function(){};
 
-HouseProvider.prototype.getImages = function(callback) {
+HouseProvider.prototype.getAll = function(callback) {
 	House.find({}, function(err, houses){
 		callback(null, houses);
 	})
 };
+
+exports.HouseProvider = HouseProvider;
