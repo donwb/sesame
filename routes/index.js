@@ -9,8 +9,7 @@ exports.index = function(req, res){
 
 exports.post = function(req, res){
 	var from = ('req body: ' + req.body.From);
-	//var message = 'echoing From: ' + from + ' to: ' + req.body.To + ' body: ' + req.body.Body;
-	var message = 'I Love You!!!!'
+	var message = 'echoing From: ' + from + ' to: ' + req.body.To + ' body: ' + req.body.Body;
 	var response = '<?xml version="1.0" encoding="UTF-8"?><Response><Sms>' + message + '</Sms></Response>'
 
   res.send(response);
