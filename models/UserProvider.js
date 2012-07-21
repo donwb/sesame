@@ -8,7 +8,8 @@ var Schema = mongoose.Schema, ObjectID = Schema.ObjectId;
 var User = new Schema({
     userid	        : {type: Number, required: true},
     firstname		: {type: String, required: true},
-    lastname		: {type: String, required: true}
+    lastname		: {type: String, required: true},
+    phone 			: {type: String, required: true}
 });
 
 mongoose.connect('mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name);
@@ -20,6 +21,12 @@ UserProvider = function(){};
 
 UserProvider.prototype.getUser = function(id, callback) {
 	User.findOne({userid:id}, function(err, user){
+		callback(null, user);
+	});
+};
+
+UserProvider.prototype.getUserId = function(phonenumber, callback){
+	User.findOne({phone: phonenumber}, function(err, user){
 		callback(null, user);
 	});
 };

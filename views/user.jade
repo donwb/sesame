@@ -8,25 +8,27 @@ h5 #{user.firstname} #{user.lastname}
 h3 Listings:
 each listing in homes
     h6 
-        a(href="#",onClick="javascript:showings();return false;") #{listing.MLS}
+        a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS}
 
 div#showings
 
 
 script
-    function showings(){
+    function showings(mls){
         var showingDiv = $('div#showings');
 
         $.ajax({
-                    url: "/user/showings/442299292",
+                    url: "/user/showings/" + mls,
                     success: function(data) {
                         var content = '<br>';
                         $.each(data, function(){
-                            var msg = 'Shown on: ' + this.date + ' to user: ' + this.userid + ' phone: ' + this.phone + '<br>';
+                            var m = moment(this.date);
+                            var niceDate = m.format('dddd, MMMM Do YYYY, h:mm:ss a');
+                            var msg = 'Shown on: ' + niceDate + ' to user: ' + this.userid + ' phone: ' + this.phone + '<br>';
                             content += msg
                         })
                     
-                        showingDiv.replaceWith(content);
+                        showingDiv.replaceWith('<div id="showings">' + content + '</div>');
                     }
                 })
 

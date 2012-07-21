@@ -18,7 +18,6 @@ exports.index = function(req, res){
 exports.showings = function(req, res){
 
 	var userid = req.params.id;
-	console.log(userid);
 
 	HouseProvider.getHome(userid, function(err, home){
 		console.log(home.requests);

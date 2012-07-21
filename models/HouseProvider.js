@@ -52,11 +52,17 @@ HouseProvider.prototype.getHome = function(mls, callback){
 	})
 }
 
-HouseProvider.prototype.stamp = function(house, callback){
-	house.requests.push({phone: '4444', userid: '111', date: 'a date'});
+HouseProvider.prototype.stamp = function(house, from, to, callback){
+	var date = new Date();
+	//console.log('date: ' + date);
+
+	house.requests.push({phone: to, userid: from, date: date});
 	
 	house.save();
 	callback(null);
 }
 
 exports.HouseProvider = HouseProvider;
+
+
+
