@@ -1,6 +1,10 @@
 app = module.parent.exports.app;
 var SiteController = require('./controllers/site');
+var UserController = require('./controllers/user');
 
 app.get('/', SiteController.index);
-app.post('/', SiteController.post);
-app.post('/test', SiteController.test);
+app.get('/test', SiteController.test);
+app.post('/getkey', SiteController.getkey);
+
+app.get('/user/:id', UserController.index);
+app.get('/user/showings/:id', UserController.showings);;

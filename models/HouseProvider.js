@@ -12,6 +12,7 @@ var Requests = new Schema({
 });
 
 var House = new Schema({
+    userid			: {type: Number, required: true},
     MLS	            : {type: String, required: true},
     key			    : {type: String, required: true},
     requests		: [Requests]
@@ -32,11 +33,24 @@ HouseProvider.prototype.getAll = function(callback) {
 
 HouseProvider.prototype.getHouse = function(mls, callback){
 	var mlstr = mls.toString();
-	console.log(mlstr);
+	//console.log(mlstr);
 	House.findOne({MLS:mlstr}, function(err, house){
 		callback(null, house);
 	});
 };
+
+HouseProvider.prototype.getHomesForUser = function(user, callback){
+	House.find({userid:user}, function(err, homes){
+		//console.log(homes);
+		callback(null, homes);
+	})
+};
+
+HouseProvider.prototype.getHome = function(mls, callback){
+	House.findOne({MLS:mls}, function(err, home){
+		callback(null, home);
+	})
+}
 
 HouseProvider.prototype.stamp = function(house, callback){
 	house.requests.push({phone: '4444', userid: '111', date: 'a date'});

@@ -1,0 +1,35 @@
+
+
+h2 Hello #{user.firstname}
+
+h3 Agent info:
+h5 #{user.firstname} #{user.lastname}
+
+h3 Listings:
+each listing in homes
+    h6 
+        a(href="#",onClick="javascript:showings();return false;") #{listing.MLS}
+
+div#showings
+
+
+script
+    function showings(){
+        var showingDiv = $('div#showings');
+
+        $.ajax({
+                    url: "/user/showings/442299292",
+                    success: function(data) {
+                        var content = '<br>';
+                        $.each(data, function(){
+                            var msg = 'Shown on: ' + this.date + ' to user: ' + this.userid + ' phone: ' + this.phone + '<br>';
+                            content += msg
+                        })
+                    
+                        showingDiv.replaceWith(content);
+                    }
+                })
+
+
+        
+    }
