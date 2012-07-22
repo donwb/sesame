@@ -2,7 +2,21 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    link(href="/stylesheets/base.css", rel="stylesheet")
+    link(href="/stylesheets/layout.css", rel="stylesheet")
+    link(href="/stylesheets/skeleton.css", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/site.css')
+    link(rel="shortcut icon", href="/images/favicon.ico")
+    link(rel="apple-touch-icon", sizes="72x72", href="/images/apple-touch-icon-72x72.png")
+    link(rel="apple-touch-icon", href="/images/apple-touch-icon.png")
+    link(rel="apple-touch-icon", sizes="114x114", href="/images/apple-touch-icon-114x114.png")
+  body
+
+    div.container
+        div.row
+            div!= body
+
+
+
     script(src="/javascripts/jquery-1.7.2.min.js")
     script(src="/javascripts/moment.js")
