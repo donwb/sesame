@@ -1,16 +1,17 @@
+div.row
+    div.offset-by-one
 
+        h2 Hello #{user.firstname}
 
-h2 Hello #{user.firstname}
+        h3 Agent info:
+        h5 #{user.firstname} #{user.lastname}
 
-h3 Agent info:
-h5 #{user.firstname} #{user.lastname}
+        h3 Listings:
+        each listing in homes
+            h6 
+                a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS}
 
-h3 Listings:
-each listing in homes
-    h6 
-        a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS}
-
-div#showings
+        div#showings
 
 
 script
