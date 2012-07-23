@@ -53,3 +53,49 @@ a.test {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
+.admin .bounding-box{
+    background-color: white;
+    color: #554e4e;
+    border: 1px solid green;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    height: 475px;
+}
+
+.admin .admin-info{
+    margin-top: 10px;
+}
+.admin .left-box{
+    float: right;
+}
+
+.admin .gutter-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.admin .listing {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.admin .user-info{
+    font-size: 15px;
+}
+
+.admin .user-text{
+    margin-bottom: -2px;
+}
+
+.admin .showings{
+    font-size: 12px;
+}
+
+.admin .show-title {
+    margin-top: -40px;
+    font-weight: bold;
+    font-size: 16px;
+}
+

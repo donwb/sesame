@@ -1,17 +1,29 @@
 div.row
-    div.offset-by-one
+    div.admin
+        div.bounding-box
+            div.admin-info
+                div.row
+                    div(class="two columns alpha")
+                        div.left-box
+                            div.gutter-text Profile:
+                    div.offset-by-two
+                        div.user-info
+                            div.user-text #{user.firstname} #{user.lastname}
+                            div.user-text Registered phone number: #{user.phone}
+                            div.user-text Email: don.browning@gmail.com
+                            div.user-text Website: http://www.google.com
 
-        h2 Hello #{user.firstname}
-
-        h3 Agent info:
-        h5 #{user.firstname} #{user.lastname}
-
-        h3 Listings:
-        each listing in homes
-            h6 
-                a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS}
-
-        div#showings
+                            
+                div.row
+                    div(class="two columns alpha")
+                        div.left-box
+                            div.gutter-text Listings:
+                    div.offset-by-two    
+                        each listing in homes
+                            div.listing 
+                                a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS} - 1518 Carlson Point
+                    div.offset-by-seven
+                        div(id="showings", class="showings")
 
 
 script
@@ -29,7 +41,8 @@ script
                             content += msg
                         })
                     
-                        showingDiv.replaceWith('<div id="showings">' + content + '</div>');
+                        showingDiv.replaceWith('<div id="showings" class="showings"><div class="show-title"> Showings for ' + mls + '</div>' 
+                            + content + '</div>');
                     }
                 })
 
