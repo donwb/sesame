@@ -12,7 +12,7 @@ var Requests = new Schema({
 });
 
 var House = new Schema({
-    userid			: {type: Number, required: true},
+    userid			: {type: String, required: true},
     MLS	            : {type: String, required: true},
     key			    : {type: String, required: true},
     requests		: [Requests]

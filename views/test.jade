@@ -2,9 +2,12 @@ div.row
 	div.offset-by-one
 		form(method="post", action="/getkey")
 			label From:
-			input(type="text", name="From")
+			select(name="From")
+				option(value="+14042593987") +14042593987
+				option(value="+14042593986") +14042593986
+				option(value="+17708206638") +17708206638
 			label To:
-			input(type="text", name="To")
+			input(type="text", name="To", value="+16782562457")
 			label Body:
 			input(type="text", name="Body")
 

@@ -76,6 +76,12 @@ a.test {
     font-weight: bold;
 }
 
+.admin .gutter-text-sm a {
+    font-size: 12px;
+    margin-top: 5px;
+    float: right;
+}
+
 .admin .listing {
     font-size: 16px;
     font-weight: bold;
@@ -99,3 +105,18 @@ a.test {
     font-size: 16px;
 }
 
+.add h1 {
+    color: black;
+}
+
+.add form {
+    color: black;
+}
+
+.add td {
+    width: 350px;
+}
+
+.add .url {
+    width: 518px;
+}

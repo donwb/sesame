@@ -6,7 +6,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema, ObjectID = Schema.ObjectId;
 
 var User = new Schema({
-    userid	        : {type: Number, required: true},
     firstname		: {type: String, required: true},
     lastname		: {type: String, required: true},
     phone 			: {type: String, required: true}
@@ -20,7 +19,7 @@ var User = mongoose.model('User');
 UserProvider = function(){};
 
 UserProvider.prototype.getUser = function(id, callback) {
-	User.findOne({userid:id}, function(err, user){
+	User.findOne({_id:id}, function(err, user){
 		callback(null, user);
 	});
 };

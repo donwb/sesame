@@ -18,6 +18,8 @@ div.row
                     div(class="two columns alpha")
                         div.left-box
                             div.gutter-text Listings:
+                            div.gutter-text-sm 
+                                a(href="#", id="add") Add listing...
                     div.offset-by-two    
                         each listing in homes
                             div.listing 
@@ -27,6 +29,20 @@ div.row
 
 
 script
+    $(function()
+    {
+        $('#add').click(function(){
+            var m = $('body').modal().data('modal');
+            $.ajax({
+                url: "/user/listing/1",
+                success: function(data){
+                    console.log(data);
+                    m.open(data);
+                }
+                });
+            });
+    });
+
     function showings(mls){
         var showingDiv = $('div#showings');
 

@@ -31,7 +31,7 @@ exports.getkey = function(req, res){
 					var response = createResponse('cant find that mls number');
 					res.send(response);			
 				}else{
-					HouseProvider.stamp(house, user.userid, to, function(err){
+					HouseProvider.stamp(house, user.id, to, function(err){
 						console.log(house.key);
 						
 						var response = createResponse('the key is: ' + house.key);
