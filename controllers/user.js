@@ -41,7 +41,7 @@ exports.createListing = function(req, res){
 	var userid = req.body.userid;
 
 	HouseProvider.addListing(mls, propName, url, userid, key, function(err){
-		res.redirect('/')
+		res.redirect('/user/' + userid)
 	})
 
 }
