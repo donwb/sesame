@@ -29,6 +29,19 @@ exports.showings = function(req, res){
 exports.addListing = function(req, res){
 	var userid = req.params.id;
 
-	res.render('add.jade', {layout: false});
+	res.render('add.jade', {layout: false, userid: userid});
 	
 };
+
+exports.createListing = function(req, res){
+	var mls = req.body.mls;
+	var propName = req.body.propName;
+	var url = req.body.url;
+	var key = req.body.key;
+	var userid = req.body.userid;
+
+	HouseProvider.addListing(mls, propName, url, userid, key, function(err){
+		res.redirect('/')
+	})
+
+}

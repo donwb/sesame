@@ -15,6 +15,8 @@ var House = new Schema({
     userid			: {type: String, required: true},
     MLS	            : {type: String, required: true},
     key			    : {type: String, required: true},
+    propertyName	: {type: String, required: true},
+    url				: {type: String, required: true},
     requests		: [Requests]
 });
 
@@ -62,6 +64,19 @@ HouseProvider.prototype.stamp = function(house, from, to, callback){
 	callback(null);
 }
 
+HouseProvider.prototype.addListing = function(mls, propname, url, userid, key, callback){
+	var listing = new House();
+	listing.MLS = mls;
+	listing.propertyName = propname;
+	listing.url = url;
+	listing.userid = userid;
+	listing.key = key;
+
+	console.log('saving!');
+
+	listing.save();
+	callback(null);
+}
 exports.HouseProvider = HouseProvider;
 
 

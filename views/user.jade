@@ -33,8 +33,10 @@ script
     {
         $('#add').click(function(){
             var m = $('body').modal().data('modal');
+            var url = window.location.pathname.split('/');
+            var id = url[url.length-1];
             $.ajax({
-                url: "/user/listing/1",
+                url: "/user/listing/" + id,
                 success: function(data){
                     console.log(data);
                     m.open(data);

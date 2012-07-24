@@ -1,5 +1,5 @@
 div.add
-	form(method="post", action="/")
+	form(method="post", action="/user/listing/add")
 		table
 			tr
 				td
@@ -9,6 +9,11 @@ div.add
 					label Property Name:
 					input(type="text", name="propName")
 			tr
-				td(colspan="2")
+				td
 					label Property URL:
-					input(type="text", name="url", class="url")
+					input(type="text", name="url")
+				td
+					label Key Code:
+					input(type="text", name="key")
+		input(type="hidden", name="userid", value="#{userid}")
+		input(type="submit")
