@@ -22,7 +22,10 @@ exports.getkey = function(req, res){
 	// verify they are a user:
 	UserProvider.getUserId(from, function(err, user){
 		if(user === null){
-			var response = createResponse('you are not a user!');
+			// This reponse needs to send back the listing agents info, which will
+			// come via a query thorough the mls number passed in..
+			var response = createResponse('Please contact Don Browning at don.browning@gmail.com ' +  
+				'for more information and access instructions');
 			res.send(response);
 		} else {
 			console.log(body);
@@ -34,7 +37,7 @@ exports.getkey = function(req, res){
 					HouseProvider.stamp(house, user.id, to, function(err){
 						console.log(house.key);
 						
-						var response = createResponse('the key is: ' + house.key);
+						var response = createResponse('Hi ' + user.firstname + ' the key is: ' + house.key);
 						res.send(response);
 					});
 				}
