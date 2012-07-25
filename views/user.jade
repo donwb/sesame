@@ -10,8 +10,8 @@ div.row
                         div.user-info
                             div.user-text #{user.firstname} #{user.lastname}
                             div.user-text Registered phone number: #{user.phone}
-                            div.user-text Email: don.browning@gmail.com
-                            div.user-text Website: http://www.google.com
+                            div.user-text Email: #{user.email}
+                            div.user-text Website: #{user.url}
 
                             
                 div.row
@@ -22,8 +22,12 @@ div.row
                                 a(href="#", id="add") Add listing...
                     div.offset-by-two    
                         each listing in homes
-                            div.listing 
-                                a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS} - 1518 Carlson Point
+                            div.listing
+                                a(href="#", onClick="javascript:deleteMLS(#{listing.MLS});return false;")
+                                    img(src="/images/pencil-delete-icon.png", class="icons", alt="delete")
+                                a(href="#", onClick="javascript:editMLS(#{listing.MLS});return false;")
+                                    img(src="/images/page-white-edit-icon.png", class="icons", atl="edit")
+                                a(href="#",onClick="javascript:showings(#{listing.MLS});return false;") #{listing.MLS} - #{listing.propertyName}
                     div.offset-by-seven
                         div(id="showings", class="showings")
 
@@ -63,7 +67,23 @@ script
                             + content + '</div>');
                     }
                 })
-
-
         
+    }
+
+    function deleteMLS(mls){
+        var ok = confirm('Are you sure you want to delete MLS: ' + mls);
+        if(ok) {
+            $.ajax({
+                type: "POST",
+                url: "/user/listing/delete/" + mls,
+                data: ({mls: mls}),
+                success: function(data){
+                    location.reload();
+                }
+                });
+        }
+    }
+
+    function editMLS(mls){
+        alert("not yet...");
     }

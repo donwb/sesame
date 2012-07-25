@@ -8,7 +8,9 @@ var Schema = mongoose.Schema, ObjectID = Schema.ObjectId;
 var User = new Schema({
     firstname		: {type: String, required: true},
     lastname		: {type: String, required: true},
-    phone 			: {type: String, required: true}
+    phone 			: {type: String, required: true},
+    email			: {type: String, required: false},
+    url				: {type: String, required: false}
 });
 
 mongoose.connect('mongodb://' + db.user + ':' + db.pass + '@' + db.host + ':' + db.port + '/' + db.name);

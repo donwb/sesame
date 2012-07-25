@@ -10,3 +10,4 @@ app.get('/user/:id', UserController.index);
 app.get('/user/showings/:id', UserController.showings);
 app.get('/user/listing/:id', UserController.addListing);
 app.post('/user/listing/add', UserController.createListing);
+app.post('/user/listing/delete/:mls', UserController.deleteListing);

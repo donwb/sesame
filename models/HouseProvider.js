@@ -77,6 +77,15 @@ HouseProvider.prototype.addListing = function(mls, propname, url, userid, key, c
 	listing.save();
 	callback(null);
 }
+
+HouseProvider.prototype.deleteListing = function(mls, callback){
+	House.findOne({MLS:mls}, function(err, house){
+		house.remove();
+		callback(null);
+	});
+}
+
+
 exports.HouseProvider = HouseProvider;
 
 

@@ -45,3 +45,14 @@ exports.createListing = function(req, res){
 	})
 
 }
+
+exports.deleteListing = function(req, res){
+	var mls = req.body.mls;
+
+	console.log('here! ' + mls);
+	HouseProvider.deleteListing(mls, function(err){
+		res.send('ok');
+	})
+}
+
+
