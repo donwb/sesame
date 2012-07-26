@@ -15,23 +15,57 @@ exports.test = function(req, res){
 };
 
 exports.getkey = function(req, res){
-	var body = req.body.Body;
+	var body = req.body.Body.split(' ');
+
 	var from = req.body.From;
 	var to = req.body.To;
 
+	// Process body params
+	var mls = body[0];
+	var param1 = body[1];
+
+	// determine what action to take
+	switch(true){
+		case (param1 === undefined):
+			console.log('key');
+			keyRequest(from, to, mls, res);
+			break;
+		case (param1 === "help"):
+			console.log('help');
+			helpRequest(mls, res);
+			break;
+		case (param1.indexOf('@')>-1):
+			console.log('email');
+			emailRequest(mls, param1, res);
+			break;
+		default:
+			console.log('no match!');
+			noMatch(res);
+			break;
+	}
+	
+};
+
+function keyRequest(from, to, mls, res){
 	// verify they are a user:
 	UserProvider.getUserId(from, function(err, user){
 		if(user === null){
-			// This reponse needs to send back the listing agents info, which will
-			// come via a query thorough the mls number passed in..
-			var response = createResponse('Please contact Don Browning at don.browning@gmail.com ' +  
-				'for more information and access instructions');
-			res.send(response);
+			HouseProvider.getHome(mls, function(err, home){
+				if(home === null){
+					var response = createResponse("I'm sorry, I can't find the MLS number: " + mls);
+					res.send(response);
+				} else {
+				UserProvider.getUser(home.userid, function(err, listingAgent){
+					var response = createResponse('Please contact ' + listingAgent.firstname + ' ' + 
+						listingAgent.lastname + ' at ' + listingAgent.phone + ' for access instructions');
+					res.send(response);
+				})}
+			})
 		} else {
-			console.log(body);
-			HouseProvider.getHouse(body, function(err, house){
+			console.log(mls);
+			HouseProvider.getHouse(mls, function(err, house){
 				if(house === null){
-					var response = createResponse('cant find that mls number');
+					var response = createResponse("I'm sorry, I can't find the MLS number: " + mls);
 					res.send(response);			
 				}else{
 					HouseProvider.stamp(house, user.id, to, function(err){
@@ -44,8 +78,22 @@ exports.getkey = function(req, res){
 			});
 		}
 	});	
-};
+}
 
+function helpRequest(mls, res){
+	var response = createResponse('valid commads are help, and email');
+	res.send(response);
+}
+
+function emailRequest(mls, email, res){
+	var response = createResponse('Thanks for your interest, an email has been sent to ' + email);
+	res.send(response);
+}
+
+function noMatch(res){
+	var response = createResponse('Sorry, invalid command');
+	res.send(response);
+}
 function createResponse(message){
 	return responseHead + message + responseTail;
 }
