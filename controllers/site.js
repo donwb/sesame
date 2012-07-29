@@ -1,3 +1,6 @@
+var twilio = require('twilio');
+
+
 var HouseProvider = require('./../models/HouseProvider').HouseProvider;
 var HouseProvider =  new HouseProvider();
 var UserProvider = require('./../models/UserProvider').UserProvider;
@@ -38,6 +41,10 @@ exports.getkey = function(req, res){
 			console.log('email');
 			emailRequest(mls, param1, res);
 			break;
+		case (param1 === 'call'):
+			console.log('calling ' + from);
+			call(mls, from);
+			break;
 		default:
 			console.log('no match!');
 			noMatch(res);
@@ -45,6 +52,21 @@ exports.getkey = function(req, res){
 	}
 	
 };
+
+exports.call = function(req, res){
+
+	/*
+	<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say voice="woman" language="fr">Chapeau!</Say>
+</Response>
+*/
+	console.log('speaking');
+	var response = createResponse('<Say voice="woman">Yo Bitch!</Say>');
+	res.send(response);
+	console.log('spoke');
+};
+
 
 function keyRequest(from, to, mls, res){
 	// verify they are a user:
@@ -96,4 +118,21 @@ function noMatch(res){
 }
 function createResponse(message){
 	return responseHead + message + responseTail;
+}
+
+function call(mls, number){
+	var SID = 'ACa8c3c8c446e7e6d78af943d840887285';
+	var AUTH = 'deaf9cf6fa2f84be23c0d636f6a02ee7';
+
+	var account = twilio.RestClient(SID, AUTH);
+
+	var reqData = {
+		'From': '+16782562457',
+		'To':'+14042593986',
+		'Url':'http://donwb.sesame.jit.su/call'
+	}
+	console.log('requesting...');
+	account.makeOutgoingCall('16782562457', '+114042593986', 'http://donwb.sesame.jit.su/call');
+	 
+	console.log('done!');
 }

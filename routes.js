@@ -5,6 +5,7 @@ var UserController = require('./controllers/user');
 app.get('/', SiteController.index);
 app.get('/test', SiteController.test);
 app.post('/getkey', SiteController.getkey);
+app.post('/call', SiteController.call);
 
 app.get('/user/:id', UserController.index);
 app.get('/user/showings/:id', UserController.showings);
